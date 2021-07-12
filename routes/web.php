@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin/dashbord', function () {
+    return view('layouts.admin_layout');
+})->name('admin.dashbord');
+
+Route::get('/admin/group','UserGroupsController@index')->name('admin.group');
+Route::get('/admin/group/create','UserGroupsController@create')->name('admin.group.create');
+
+Route::get('/admin/user','UsersController@index')->name('admin.user');
+
