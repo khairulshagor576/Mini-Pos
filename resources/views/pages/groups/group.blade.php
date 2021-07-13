@@ -20,14 +20,14 @@
                     <tr>
                         <th>ID</th>
                         <th>Title</th>
-                        <th>Actions</th>
+                        <th class="text-right">Actions</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>ID</th>
                         <th>Title</th>
-                        <th>Actions</th>
+                        <th class="text-right">Actions</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -35,9 +35,14 @@
                     <tr>
                         <td>{{ $group->id }}</td>
                         <td>{{ $group->title }}</td>
-                        <td>
-                            <a href="" class="btn btn-primary">Edit</a>
-                            <a href="" class="btn btn-danger">Delete</a>
+                        <td class="text-right">
+                            <form action="{{ route('admin.group.delete',[$group->id]) }}" method="POST">
+                             @csrf
+                             @method('DELETE')
+                             <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>Delete</button>
+                            </form>
+                            {{-- <a href="" class="btn btn-primary"><i class="fa fa-edit"></i>Edit</a> --}}
+                            {{-- <a href="{{ route('admin.group.delete',[$group->id]) }}" class="btn btn-danger"><i class="fa fa-trash"></i>Delete</a> --}}
                         </td>
                     </tr>
                     @endforeach

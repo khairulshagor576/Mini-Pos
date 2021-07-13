@@ -305,7 +305,8 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                
+                @include('alert.message')    
                     <!-- Page Heading -->
                 @yield('main_content')    
 

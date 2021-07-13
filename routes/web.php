@@ -23,6 +23,8 @@ Route::get('/admin/dashbord', function () {
 
 Route::get('/admin/group','UserGroupsController@index')->name('admin.group');
 Route::get('/admin/group/create','UserGroupsController@create')->name('admin.group.create');
+Route::post('/admin/group/store','UserGroupsController@store')->name('admin.group.store');
+Route::delete('/admin/group/delete/{id}','UserGroupsController@destroy')->name('admin.group.delete');
 
 Route::get('/admin/user','UsersController@index')->name('admin.user');
 
