@@ -26,5 +26,5 @@ Route::get('/admin/group/create','UserGroupsController@create')->name('admin.gro
 Route::post('/admin/group/store','UserGroupsController@store')->name('admin.group.store');
 Route::delete('/admin/group/delete/{id}','UserGroupsController@destroy')->name('admin.group.delete');
 
-Route::get('/admin/user','UsersController@index')->name('admin.user');
+Route::resource('users', 'UsersController');
 

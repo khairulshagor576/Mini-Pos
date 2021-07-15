@@ -63,7 +63,7 @@
                 <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('admin.group') }}">Groups</a>
-                        <a class="collapse-item" href="{{ route('admin.user') }}">Users</a>
+                        <a class="collapse-item" href="{{ url('/users') }}">Users</a>
                     </div>
                 </div>
             </li>
@@ -77,7 +77,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('admin.group') }}">Categories</a>
-                        <a class="collapse-item" href="{{ route('admin.user') }}">Product</a>
+                        <a class="collapse-item" href="{{ url('users') }}">Product</a>
                     </div>
                 </div>
             </li>
