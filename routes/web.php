@@ -30,5 +30,6 @@ Route::delete('/admin/group/delete/{id}','UserGroupsController@destroy')->name('
 and also we use 'only' which is used for showing
 wishing method
 */       
-Route::resource('users', 'UsersController',['except'=>'show']);
+Route::resource('users', 'UsersController');
+Route::resource('categories', 'CategoriesController',['except'=>'show']);
 

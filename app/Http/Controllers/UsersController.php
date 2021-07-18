@@ -50,6 +50,14 @@ class UsersController extends Controller
         }
     }
 
+    public function show ($id)
+    {
+      $this->data['user']=User::find($id);
+      $this->data['group'] = Group::groupListArray ();
+
+      return view('pages.users.show',$this->data);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
