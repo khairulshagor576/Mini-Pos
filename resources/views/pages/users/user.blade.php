@@ -45,17 +45,17 @@
                     <tr>
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->admin_id }}</td>
-                        <td>{{ $user->group_id }}</td>
+                        <td>{{ $user->group->title}}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->address }}</td>
                         <td class="text-center">
                             <form action="{{ url('users/'.$user->id) }}" method="POST">
-                            <a href="{{ route('users.edit',['user'=>$user->id]) }}" class="btn btn-primary"><i class="fa fa-edit"></i>Edit</a>   
+                            <a href="{{ route('users.edit',[$user->id]) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>   
                              @csrf
                              @method('DELETE')
-                             <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>Delete</button>
+                             <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>

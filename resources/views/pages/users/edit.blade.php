@@ -1,6 +1,6 @@
 @extends('layouts.admin_layout')
 @section('main_content')
-<h2>Create New User</h2>
+<h2>Update <strong>{{ $user->name }}</strong> Information</h2>
 <!-- Group Data Showing Here -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -9,12 +9,13 @@
     <div class="card-body">
        <div class="row justify-content-md-center">
             <div class="col-md-8">
-                <form method="POST" action="{{ url('users') }}">
+                <form method="POST" action="{{ url('users',$user->id) }}">
                     @csrf
+                    @method('PUT')
                     <div class="form-group row">
                         <label for="admin_id" class="col-sm-2 col-form-label">Admin</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="admin_id" id="admin_id" placeholder="Admin">
+                          <input type="text" class="form-control" name="admin_id" id="admin_id" value="{{ $user->admin_id }}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -23,7 +24,9 @@
                           <select class="form-control" name="group_id">
                                   <option value="">Select Group</option>
                                   @foreach ($groups as $key => $value)
-                                  <option value="{{ $key }}">{{ $value }}</option>
+                                    @if($user->group_id==$key)
+                                    <option selected value="{{ $user->group_id }}">{{ $value }}</option>
+                                    @endif
                                   @endforeach
                           </select>
                         </div>
@@ -31,25 +34,25 @@
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Name<span class="text-danger">*</span></label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                          <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                          <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="phone" class="col-sm-2 col-form-label">Phone<span class="text-danger">*</span></label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone">
+                          <input type="text" class="form-control" name="phone" id="phone" value="{{ $user->phone }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Address</label>
                         <div class="col-sm-10">
-                          <textarea type="text" class="form-control" name="address"></textarea>
+                          <textarea type="text" class="form-control" name="address">{{ $user->address }}</textarea>
                         </div>
                     </div>    
                     <div class="mt-4 text-right">    

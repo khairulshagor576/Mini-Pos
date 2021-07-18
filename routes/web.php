@@ -26,5 +26,9 @@ Route::get('/admin/group/create','UserGroupsController@create')->name('admin.gro
 Route::post('/admin/group/store','UserGroupsController@store')->name('admin.group.store');
 Route::delete('/admin/group/delete/{id}','UserGroupsController@destroy')->name('admin.group.delete');
 
-Route::resource('users', 'UsersController');
+/*except here means: if i don't need any method, then we can use it.
+and also we use 'only' which is used for showing
+wishing method
+*/       
+Route::resource('users', 'UsersController',['except'=>'show']);
 
