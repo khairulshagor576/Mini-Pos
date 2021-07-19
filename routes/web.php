@@ -32,4 +32,5 @@ wishing method
 */       
 Route::resource('users', 'UsersController');
 Route::resource('categories', 'CategoriesController',['except'=>'show']);
+Route::resource('products', 'ProductsController');
 

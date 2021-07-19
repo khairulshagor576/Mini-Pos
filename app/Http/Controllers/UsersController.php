@@ -43,7 +43,7 @@ class UsersController extends Controller
     {
        // return $request->all();
 
-         $data = $request->all();
+        $data = $request->all();
         if(User::create($data))
         {
             return redirect()->to('users')->with('success','User Data is Saved Successfully');
