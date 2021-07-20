@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,25 +13,33 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('login','Auth\LoginController@login')->name('login');
+Route::post('login','Auth\LoginController@authenticate')->name('login.confirm');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware'=>'auth'],function(){
+  
+    Route::get('dashbord', function () {
+        return view('welcome');
+    });
+    
+    Route::get('logout','Auth\LoginController@logout')->name('logout');
+    
+    Route::get('/admin/dashbord', function () {
+        return view('layouts.admin_layout');
+    })->name('admin.dashbord');
+    
+    Route::get('/admin/group','UserGroupsController@index')->name('admin.group');
+    Route::get('/admin/group/create','UserGroupsController@create')->name('admin.group.create');
+    Route::post('/admin/group/store','UserGroupsController@store')->name('admin.group.store');
+    Route::delete('/admin/group/delete/{id}','UserGroupsController@destroy')->name('admin.group.delete');
+    
+    /*except here means: if i don't need any method, then we can use it.
+    and also we use 'only' which is used for showing
+    wishing method
+    */       
+    Route::resource('users', 'UsersController');
+    Route::resource('categories', 'CategoriesController',['except'=>'show']);
+    Route::resource('products', 'ProductsController');
 });
 
-Route::get('/admin/dashbord', function () {
-    return view('layouts.admin_layout');
-})->name('admin.dashbord');
-
-Route::get('/admin/group','UserGroupsController@index')->name('admin.group');
-Route::get('/admin/group/create','UserGroupsController@create')->name('admin.group.create');
-Route::post('/admin/group/store','UserGroupsController@store')->name('admin.group.store');
-Route::delete('/admin/group/delete/{id}','UserGroupsController@destroy')->name('admin.group.delete');
-
-/*except here means: if i don't need any method, then we can use it.
-and also we use 'only' which is used for showing
-wishing method
-*/       
-Route::resource('users', 'UsersController');
-Route::resource('categories', 'CategoriesController',['except'=>'show']);
-Route::resource('products', 'ProductsController');
 
