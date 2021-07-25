@@ -33,11 +33,17 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/admin/group/store','UserGroupsController@store')->name('admin.group.store');
     Route::delete('/admin/group/delete/{id}','UserGroupsController@destroy')->name('admin.group.delete');
     
+    
     /*except here means: if i don't need any method, then we can use it.
     and also we use 'only' which is used for showing
     wishing method
     */       
     Route::resource('users', 'UsersController');
+    Route::get('users/{id}/sales','UserSalesController@index')->name('user.sales');
+    Route::get('users/{id}/purchases','UserPurchasesController@index')->name('user.purchases');
+    Route::get('users/{id}/payments','UserPaymentsController@index')->name('user.payments');
+    Route::get('users/{id}/receipts','UserReceiptsController@index')->name('user.receipts');
+
     Route::resource('categories', 'CategoriesController',['except'=>'show']);
     Route::resource('products', 'ProductsController');
 });

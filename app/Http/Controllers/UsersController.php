@@ -52,8 +52,9 @@ class UsersController extends Controller
 
     public function show ($id)
     {
-      $this->data['user']=User::find($id);
-      $this->data['group'] = Group::groupListArray ();
+      $this->data['user']    =User::find($id);
+      $this->data['group']   = Group::groupListArray ();
+      $this->data['tab_menu']='users_active';
 
       return view('pages.users.show',$this->data);
     }
