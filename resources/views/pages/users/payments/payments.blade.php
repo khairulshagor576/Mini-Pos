@@ -9,7 +9,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th width="80">Customer</th>
+                            <th width="80">Admin</th>
                             <th width="80">Date</th>
                             <th width="60">Total</th>
                             <th width="60">Note</th>
@@ -18,23 +18,20 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th width="80">Customer</th>
-                            <th width="80">Date</th>
-                            <th width="60">Total</th>
-                            <th width="60">Note</th>
-                            <th width="150" class="text-center">Actions</th>
+                            <th colspan="2" class="text-center">Total</th>
+                            <th width="60">{{ $user->payments->sum('amount') }}</th>
+                            <th colspan="2"></th>
                         </tr>
                     </tfoot>
                     <tbody>
                         @foreach ($user->payments as $payment )
                         <tr>
-                            <td>{{ $user->name }}</td>
+                            <td>{{ optional($payment->admin)->name}}</td>
                             <td>{{ $payment->date}}</td>
                             <td>{{ $payment->amount}}</td>
                             <td>{{ $payment->note}}</td>
                             <td class="text-center">
-                                <form action="{{ url('users/'.$user->id) }}" method="POST">
-                                <a href="{{ route('users.show',[$user->id]) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>   
+                                <form action="{{ route('user.payments.destroy',['id'=>$user->id,'payment_id'=>$payment->id]) }}" method="POST">   
                                  @csrf
                                  @method('DELETE')
                                  <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
@@ -47,4 +44,5 @@
             </div>
         </div>
     </div>
+    <!-- Button trigger modal --> 
 @endsection
