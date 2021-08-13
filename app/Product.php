@@ -24,4 +24,16 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public static function ProductListArray()
+    {
+        $products = Product::all();
+        $product_arr=[];
+        foreach ($products as $row) 
+        {
+            $product_arr[$row['id']]=$row['title'];
+        }
+
+        return $product_arr;
+    }
 }

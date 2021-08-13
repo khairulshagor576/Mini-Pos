@@ -33,6 +33,11 @@ class User extends Model
         return $this->hasMany(Receipt::class);
     }
 
+    public function admin() 
+    {
+        return $this->belongsTO(Admin::class);
+    }
+
 
 }
 

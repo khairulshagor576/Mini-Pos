@@ -5,13 +5,13 @@
         <a href="{{ route('users.index') }}" class="btn btn-info"><i class="fas fa-arrow-left"></i>Back</a>
     </div>
     <div class="col-md-8 text-right">
-        <a href="{{ url('users/create') }}" class="btn btn-info"><i class="fa fa-plus"></i>New Sale</a>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newSale">
+          <i class="fa fa-plus"></i>New Sale
+      </button>
         <a href="{{ url('users/create') }}" class="btn btn-info"><i class="fa fa-plus"></i>New Purchase</a>
-        {{-- <a href="{{ url('users/create') }}" class="btn btn-info"><i class="fa fa-plus"></i>New Payment</a> --}}
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newPayment">
             <i class="fa fa-plus"></i>New Payment
         </button>
-        {{-- <a href="{{ url('users/create') }}" class="btn btn-info"><i class="fa fa-plus"></i>New Recipt</a> --}}
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newReceipt">
             <i class="fa fa-plus"></i>New Receipt
         </button>
@@ -114,4 +114,45 @@
     </div>
   </form>
   </div>
+
+  <!-- Modal for Sale -->
+ <div class="modal fade" id="newSale" tabindex="-1" role="dialog" aria-labelledby="newSaleModalLabel" aria-hidden="true">
+  <form method="POST" action="{{ route('user.sales.store',[$user->id]) }}">
+   @csrf  
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newSaleModalLabel">New Sale</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group row">
+          <label for="date" class="col-sm-2 col-form-label">Date</label>
+          <div class="col-sm-10">
+            <input type="date" class="form-control" name="date" id="date" placeholder="Date" required>
+          </div>      
+          </div>
+          <div class="form-group row">
+            <label for="challan_no" class="col-sm-2 col-form-label">Challan No</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="challan_no" id="challan_no" placeholder="Challan No" >
+            </div>
+        </div>
+        <div class="form-group row">
+          <label for="note" class="col-sm-2 col-form-label">Note</label>
+          <div class="col-sm-10">
+            <textarea type="text" class="form-control" name="note"></textarea>
+          </div>
+      </div>         
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary ">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
 @endsection

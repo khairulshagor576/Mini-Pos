@@ -44,7 +44,7 @@
                     @foreach ($users as $user )
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->admin_id }}</td>
+                        <td>{{ optional($user->admin)->name }}</td>
                         <td>{{ $user->group->title}}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>

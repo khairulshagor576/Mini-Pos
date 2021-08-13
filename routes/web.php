@@ -39,7 +39,16 @@ Route::group(['middleware'=>'auth'],function(){
     wishing method
     */       
     Route::resource('users', 'UsersController');
+
+
     Route::get('users/{id}/sales','UserSalesController@index')->name('user.sales');
+    Route::post('users/{id}/invoices','UserSalesController@store')->name('user.sales.store');
+    Route::get('users/{id}/invoices/{invoice_id}','UserSalesController@invoice')->name('user.sales.invoice_details');
+    Route::delete('users/{id}/invoices/{invoice_id}','UserSalesController@destroy')->name('user.sales.invoice_delete');
+    Route::post('users/{id}/invoices/{invoice_id}','UserSalesController@addItems')->name('user.sales.additems');
+    Route::delete('users/{id}/invoices/{invoice_id}/{item_id}','UserSalesController@destroyItem')->name('user.sales.delete_item');
+
+
     Route::get('users/{id}/purchases','UserPurchasesController@index')->name('user.purchases');
     
     /*

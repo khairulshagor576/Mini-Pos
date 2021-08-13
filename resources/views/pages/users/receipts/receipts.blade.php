@@ -19,7 +19,7 @@
                     <tfoot>
                         <tr>
                             <th colspan="2" class="text-center">Total</th>
-                            <th width="60">{{ $user->receipts->sum('amount') }}</th>
+                            <th width="60" class="text-right">{{ $user->receipts->sum('amount') }}</th>
                             <th colspan="2"></th>
                         </tr>
                     </tfoot>
@@ -28,7 +28,7 @@
                         <tr>
                             <td>{{ optional($receipt->admin)->name}}</td>
                             <td>{{ $receipt->date}}</td>
-                            <td>{{ $receipt->amount}}</td>
+                            <td class="text-right">{{ $receipt->amount}}</td>
                             <td>{{ $receipt->note}}</td>
                             <td class="text-center">
                                 <form action="{{ route('user.receipts.destroy',['id'=>$user->id,'receipt_id'=>$receipt->id]) }}" method="POST">  
